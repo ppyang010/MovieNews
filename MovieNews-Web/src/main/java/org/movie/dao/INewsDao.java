@@ -3,10 +3,11 @@ package org.movie.dao;
 import java.util.List;
 
 import org.movie.model.News;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface NewsDao {
+
+public interface INewsDao {
 //    int deleteByPrimaryKey(Integer nid);
 //
 //    int insert(News record);
@@ -18,5 +19,6 @@ public interface NewsDao {
 //    int updateByPrimaryKeySelective(News record);
 //
 //    int updateByPrimaryKey(News record);
-	List<News> getList();
+	public List<News> getList();
+	public List<News> getList(Integer begin,Integer rows);
 }

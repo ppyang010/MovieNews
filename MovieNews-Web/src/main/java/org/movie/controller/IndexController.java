@@ -1,5 +1,8 @@
 package org.movie.controller;
 
+import java.util.List;
+
+import org.movie.model.News;
 import org.movie.service.IndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,17 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class IndexController {
-	
 	@Autowired
 	IndexService indexService;
 
 	@RequestMapping("/index")
-	public String index(){
+	public String index() {
 		return "index";
 	}
 	@RequestMapping("/news")
-	public String news(){
-		indexService.getNewsList();
+	public String news() {
+		indexService.getNewsListByPage(1, 10);
 		return "index";
 	}
 }
