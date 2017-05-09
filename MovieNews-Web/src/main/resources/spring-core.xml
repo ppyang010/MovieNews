@@ -41,7 +41,7 @@
 		<!-- 自动扫描mapping.xml文件 -->
 		<property name="mapperLocations" value="classpath:org/movie/mapper/*.xml"></property>
 		<!-- 添加映射配置文件 -->
-		<!-- <property name="configLocation" value="classpath:mybatis-config.xml" />  -->
+		<property name="configLocation" value="classpath:mybatis-config.xml" />  
 	</bean>
 	<!--注入sqlsessionTemplate -->
 	<!-- 数据访问模板类 -->

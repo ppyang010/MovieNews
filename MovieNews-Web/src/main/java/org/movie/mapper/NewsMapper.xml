@@ -20,7 +20,14 @@
 		ishot, count
 	</sql>
 	<select id="getList" parameterType="java.util.HashMap" resultType="org.movie.model.News">
-		select * from news t ORDER BY time DESC limit 0,10
+		select * 
+		from news t
+		ORDER BY time DESC 
+		limit #{begin},#{rows}
+	</select>
+	<select id="getTotal"  resultType="java.lang.Integer">
+		select count(*) 
+		from news 
 	</select>
 
 	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"

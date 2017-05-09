@@ -43,6 +43,18 @@ public class NewsDao extends BaseDao implements INewsDao {
 		}
 		return list;
 	}
+
+	public int getTotal() {
+		int total=0;
+		String sql="News.getTotal";
+		try {
+			total=this.getSqlSession().selectOne(sql);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			total=0;
+		}
+		return total;
+	}
 	
 
 

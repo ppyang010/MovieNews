@@ -18,9 +18,5 @@ public class IndexController {
 	public String index() {
 		return "index";
 	}
-	@RequestMapping("/news")
-	public String news() {
-		indexService.getNewsListByPage(1, 10);
-		return "index";
-	}
+	
 }

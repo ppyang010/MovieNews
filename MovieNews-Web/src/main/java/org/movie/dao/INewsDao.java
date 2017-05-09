@@ -21,4 +21,5 @@ public interface INewsDao {
 //    int updateByPrimaryKey(News record);
 	public List<News> getList();
 	public List<News> getList(Integer begin,Integer rows);
+	public int getTotal();
 }
