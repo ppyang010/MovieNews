@@ -26,7 +26,7 @@ public class NewsController {
 		}
 		PageBean<News> pageBean = newsService.getNewsListByPage(pageNum, Constant.DEFAULTPAGESIZE);
 		model.addAttribute("pageBean", pageBean);
-		return "list";
+		return "newslist";
 	}
 	
 }

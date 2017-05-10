@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -12,7 +13,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<%@ include file="head.jsp" %>
 
 </head>
- <script src="${pageContext.request.contextPath}/js/js/responsive-tabs.js"></script>
+ <script src="${pageContext.request.contextPath}/static/js/responsive-tabs.js"></script>
     <script type="text/javascript">
       $( '#myTab a' ).click( function ( e ) {
         e.preventDefault();
@@ -70,20 +71,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			</form>
 		</div>
 		<div class="col-md-8 blog-posts">
-			<h3 class="post"><s:property value="type"/></h3>
+			<h3 class="post"></h3>
 			<div class="blog-top">
 			  <div class="col-md-12 grid_3">
 					
-					<!--  
-					<div class="blog-poast-info">
+					<!-- <div class="blog-poast-info">
 						<ul>
 							<li><i class="fa fa-user"></i><a class="admin" href="#"><span> </span> Admin </a></li>
 							<li><i class="fa fa-calendar"></i><span> </span>12-04-2015</li>
 							<li><i class="fa fa-comments"></i><a class="p-blog" href="#"><span> </span>3 Comments </a></li>
 						</ul>
-				    </div>
-				    -->
-					<s:iterator var="p" value="nList">
+				    </div> -->
+				<%-- 	<s:iterator var="p" value="nList">
 						<div class="post-article">
 							<a href="${pageContext.request.contextPath}/news_jumpToNews.html?nid=<s:property value="#p.nid"/>" class="post-title" target="_blank"><s:property value="#p.title"/></a>
 							<i><s:date name="#p.time"  format="yyyy-MM-dd HH:mm:ss"/></i>
@@ -101,7 +100,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<p><s:property value="#p.lead"/><br> 
 							<a href="${pageContext.request.contextPath}/news_jumpToNews.html?nid=<s:property value="#p.nid"/>" style="color:blue" target="_blank">Read more</a></p>
 						</div>
-					</s:iterator>
+					</s:iterator> --%>
+					<c:forEach var="newsItem" items="${pageBean.list}" varStatus="s">
+						<div class="post-article">
+							<a href="${pageContext.request.contextPath}/news_jumpToNews.html?nid=${newsItem.nid}" class="post-title" target="_blank">${newsItem.title}</a>
+							<i><s:date name="#p.time"  format="yyyy-MM-dd HH:mm:ss"/></i>
+							<a id="sc${newsItem.nid}" href="javascript:void(0)" onclick="addFavorites('${newsItem.nid}')" style="float:right">收藏</a>
+							<%-- <s:iterator var="f" value="fList">
+								<s:if test="#f.nid==#p.nid">
+									<script>
+										//alert(<s:property value="#p.nid"/>);
+										$('#sc<s:property value="#p.nid"/>').text("已收藏");
+										$('#sc<s:property value="#p.nid"/>').attr('onclick','removeFavorites(<s:property value="#p.nid"/>)');
+									</script>
+								</s:if>
+							</s:iterator> --%>
+							
+							<p>${newsItem.lead}<br> 
+							<a href="${pageContext.request.contextPath}/news_jumpToNews.html?nid=${newsItem.nid}" style="color:blue" target="_blank">Read more</a></p>
+						</div>
+					</c:forEach>
+					
 				</div>
 				
 				<div class="clearfix"></div>
@@ -110,21 +129,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		
 				
 	</div>
-	<div class="blog-pagimation">
+ <div class="blog-pagimation">
 	<ul class="pagination sint">
-			<s:if test="pageBean.totalPage!=0"> <!-- 总页数不为0 -->
-			<s:if test="pageBean.pageNum == 1">
-				<li class="disabled">
-				<a href="javascript:void(0);" aria-label="Previous"><span aria-hidden="true">«上一页</span></a>
-				</li>
-			</s:if>
-			<s:else>
-				<li class="abled">
-				<a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=<s:property value="pageBean.pageNum-1"/>&<s:property value="searchType" /><s:property value="query" />" aria-label="Previous"><span aria-hidden="true">«上一页</span></a>
-				</li>
-			</s:else>
-			</s:if>
-			<!-- 总页数大于10 -->
+	
+			
+			<c:if test="${pageBean.totalPage > 0}">
+				<c:choose>
+					<c:when test="${pageBean.pageNum == 1}">
+						<li class="disabled">
+						<a href="javascript:void(0);" aria-label="Previous"><span aria-hidden="true">«上一页</span></a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="abled">
+						<a href="${pageContext.request.contextPath}/news/${pageBean.pageNum - 1}" aria-label="Previous"><span aria-hidden="true">«上一页</span></a>
+						</li>
+					</c:otherwise>
+					
+				</c:choose>
+			</c:if>
+		
+			<%-- <!-- 总页数大于10 -->
 			<s:if test="pageBean.totalPage>10">
 				<!-- 当前页数为前5页 -->
 				<s:if test="pageBean.pageNum<5 ">
@@ -188,7 +213,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</s:else>
 				</s:else>
 			</s:if>
-			<!-- 总页数少于5 -->
+			--%>
+			<%-- <!-- 总页数少于5 -->
 			<s:else>
 				<s:iterator var="i" begin="1" end="pageBean.totalPage">
 					<s:if test="pageBean.pageNum != #i">
@@ -198,25 +224,75 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<li class="active"><a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=<s:property value="#i"/>&<s:property value="searchType" /><s:property value="query" />"><s:property value="#i"/> <span class="sr-only">(current)</span></a></li>
 					</s:else>
 				</s:iterator>
-			</s:else>
+			</s:else> --%>
+				
+			<c:choose>
+				<c:when test="${pageBean.totalPage>10 }"><!-- 总页数大于10 -->
 					
+					<c:choose>
+						<c:when test="${pageBean.pageNum < 5}"><!-- 当前页数为前5页  -->
+							<c:forEach var="i" begin="1" end="5">
+								<c:if test="${pageBean.pageNum != i }">
+									<li><a href="${pageContext.request.contextPath}/news/${i}" >${i} <span class="sr-only">(current)</span></a></li>
+								</c:if>
+								<c:if test="${pageBean.pageNum == i }">
+									<li class="active"><a href="${pageContext.request.contextPath}/news/${i}">${i} <span class="sr-only">(current)</span></a></li>
+								</c:if>
+							</c:forEach>
+							<li><a href="javascript:void(0);">... <span class="sr-only">(current)</span></a></li>
+							<c:choose>
+								<c:when test="${pageBean.pageNum == pageBean.totalPage }">
+									<li class="active"><a href="${pageContext.request.contextPath}/news/${pageBean.totalPage}">${pageBean.totalPage} <span class="sr-only">(current)</span></a></li>
+								</c:when>
+								<c:otherwise>
+									<li ><a href="${pageContext.request.contextPath}/news/${pageBean.totalPage}">${pageBean.totalPage} <span class="sr-only">(current)</span></a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						
+						<c:when  test="${pageBean.pageNum >(pageBean.totalPage-5)}"><!-- 当前页数为最后5页 -->
+							<c:choose>
+								<c:when test="${pageBean.pageNum == 1 }">
+									<li class="active"><a href="${pageContext.request.contextPath}/news/${pageBean.totalPage}">1 <span class="sr-only">(current)</span></a></li>
+								</c:when>
+								<c:otherwise>
+									<li ><a href="${pageContext.request.contextPath}/news/${pageBean.totalPage}">1 <span class="sr-only">(current)</span></a></li>
+								</c:otherwise>
+							</c:choose>
+							<li><a href="javascript:void(0);">... <span class="sr-only">(current)</span></a></li>
+							<c:forEach var="i" begin="${pageBean.totalPage-5 }" end="${pageBean.totalPage}">
+								<c:if test="${pageBean.pageNum != i }">
+									<li><a href="${pageContext.request.contextPath}/news/${i}" >${i} <span class="sr-only">(current)</span></a></li>
+								</c:if>
+								<c:if test="${pageBean.pageNum == i }">
+									<li class="active"><a href="${pageContext.request.contextPath}/news/${i}">${i} <span class="sr-only">(current)</span></a></li>
+								</c:if>
+							</c:forEach>
+						</c:when>
+						
+					</c:choose>
+				</c:when>
 			
+			</c:choose>
 					
-			<s:if test="pageBean.totalPage!=0"> <!-- 总页数不为0 -->
-			<s:if test="pageBean.pageNum == pageBean.totalPage">
-				<li class="disabled">
-				<a href="javascript:void(0);" aria-label="Next"><span aria-hidden="true">下一页»</span></a>
-				</li>
-			</s:if>
-			<s:else>
-				<li class="abled">
-				<a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=<s:property value="pageBean.pageNum+1"/>&<s:property value="searchType" /><s:property value="query" />" aria-label="Next"><span aria-hidden="true">下一页»</span></a>
-				</li>
-			</s:else>
-			</s:if>
+			<!-- 总页数不为0 -->
+			<c:if test="${pageBean.totalPage != 0}">
+				<c:choose>
+					<c:when test="${pageBean.pageNum == pageBean.totalPage }">
+						<li class="disabled">
+						<a href="javascript:void(0);" aria-label="Next"><span aria-hidden="true">下一页»</span></a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="abled">
+						<a href="${pageContext.request.contextPath}/news/${pageBean.pageNum + 1}" aria-label="Next"><span aria-hidden="true">下一页»</span></a>
+						</li>
+					</c:otherwise>
+				</c:choose>
 			
+			</c:if>
 		  </ul>
-		  </div>
+		  </div> 
 	<div class="clearfix"></div>
 	</div>
 	
