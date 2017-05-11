@@ -149,82 +149,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</c:choose>
 			</c:if>
 		
-			<%-- <!-- 总页数大于10 -->
-			<s:if test="pageBean.totalPage>10">
-				<!-- 当前页数为前5页 -->
-				<s:if test="pageBean.pageNum<5 ">
-					<s:iterator var="i" begin="1" end="5">
-						<s:if test="pageBean.pageNum != #i">
-							<li><a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=<s:property value="#i"/>&<s:property value="searchType" /><s:property value="query" />" ><s:property value="#i"/> <span class="sr-only">(current)</span></a></li>
-						</s:if>
-						<s:else>
-							<li class="active"><a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=<s:property value="#i"/>&<s:property value="searchType" /><s:property value="query" />"><s:property value="#i"/> <span class="sr-only">(current)</span></a></li>
-						</s:else>
-					</s:iterator>
-					<li><a href="javascript:void(0);">... <span class="sr-only">(current)</span></a></li>
-					<s:if test="pageBean.pageNum==pageBean.totalPage">
-						<li class="active"><a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=<s:property value="pageBean.totalPage"/>&<s:property value="searchType" /><s:property value="query" />"><s:property value="pageBean.totalPage"/> <span class="sr-only">(current)</span></a></li>
-					</s:if>
-					<s:else>
-						<li><a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=<s:property value="pageBean.totalPage"/>&<s:property value="searchType" /><s:property value="query" />"><s:property value="pageBean.totalPage"/> <span class="sr-only">(current)</span></a></li>
-					</s:else>
-				</s:if>
-				<!-- 当前页数为最后5页 -->
-				<s:elseif test="pageBean.pageNum>(pageBean.totalPage-5)">
-					<s:if test="pageBean.pageNum==1">
-						<li class="active" ><a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=1&<s:property value="searchType" /><s:property value="query" />">1 <span class="sr-only">(current)</span></a></li>
-					</s:if>
-					<s:else>
-						<li><a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=1&<s:property value="searchType" /><s:property value="query" />">1 <span class="sr-only">(current)</span></a></li>
-					</s:else>
-					<li><a href="javascript:void(0);">... <span class="sr-only">(current)</span></a></li>
-					<s:iterator var="i" begin="pageBean.totalPage-5" end="pageBean.totalPage">
-						<s:if test="pageBean.pageNum != #i">
-							<li><a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=<s:property value="#i"/>&<s:property value="searchType" /><s:property value="query" />"><s:property value="#i"/> <span class="sr-only">(current)</span></a></li>
-						</s:if>
-						<s:else>
-							<li class="active"><a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=<s:property value="#i"/>&<s:property value="searchType" /><s:property value="query" />"><s:property value="#i"/> <span class="sr-only">(current)</span></a></li>
-						</s:else>
-					</s:iterator>
-				</s:elseif>
-				<!-- 当前页数为其他页数 -->
-				<s:else>
-					<s:if test="pageBean.pageNum==1">
-						<li class="active" ><a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=1&<s:property value="searchType" /><s:property value="query" />">1 <span class="sr-only">(current)</span></a></li>
-					</s:if>
-					<s:else>
-						<li><a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=1&<s:property value="searchType" /><s:property value="query" />">1 <span class="sr-only">(current)</span></a></li>
-					</s:else>
-					<li><a href="javascript:void(0);">... <span class="sr-only">(current)</span></a></li>
-					<s:iterator var="i" begin="pageBean.pageNum-2" end="pageBean.pageNum+2">
-						<s:if test="pageBean.pageNum != #i">
-							<li><a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=<s:property value="#i"/>&<s:property value="searchType" /><s:property value="query" />"><s:property value="#i"/> <span class="sr-only">(current)</span></a></li>
-						</s:if>
-						<s:else>
-							<li class="active"><a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=<s:property value="#i"/>&<s:property value="searchType" /><s:property value="query" />"><s:property value="#i"/> <span class="sr-only">(current)</span></a></li>
-						</s:else>
-					</s:iterator>
-					<li><a href="javascript:void(0);">... <span class="sr-only">(current)</span></a></li>
-					<s:if test="pageBean.pageNum==pageBean.totalPage">
-						<li class="active"><a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=<s:property value="pageBean.totalPage"/>&<s:property value="searchType" /><s:property value="query" />"><s:property value="pageBean.totalPage"/> <span class="sr-only">(current)</span></a></li>
-					</s:if>
-					<s:else>
-						<li><a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=<s:property value="pageBean.totalPage"/>&<s:property value="searchType" /><s:property value="query" />"><s:property value="pageBean.totalPage"/> <span class="sr-only">(current)</span></a></li>
-					</s:else>
-				</s:else>
-			</s:if>
-			--%>
-			<%-- <!-- 总页数少于5 -->
-			<s:else>
-				<s:iterator var="i" begin="1" end="pageBean.totalPage">
-					<s:if test="pageBean.pageNum != #i">
-						<li><a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=<s:property value="#i"/>&<s:property value="searchType" /><s:property value="query" />"><s:property value="#i"/> <span class="sr-only">(current)</span></a></li>
-					</s:if>
-					<s:else>
-						<li class="active"><a href="${pageContext.request.contextPath}/news_<s:property value="link" />.html?page=<s:property value="#i"/>&<s:property value="searchType" /><s:property value="query" />"><s:property value="#i"/> <span class="sr-only">(current)</span></a></li>
-					</s:else>
-				</s:iterator>
-			</s:else> --%>
+		
 				
 			<c:choose>
 				<c:when test="${pageBean.totalPage>10 }"><!-- 总页数大于10 -->
@@ -269,6 +194,36 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								</c:if>
 							</c:forEach>
 						</c:when>
+						
+						<c:otherwise><!-- 当前页数为其他页数 -->
+							<c:choose>
+								<c:when test="${pageBean.pageNum == 1 }">
+									<li class="active"><a href="${pageContext.request.contextPath}/news/${pageBean.totalPage}">1 <span class="sr-only">(current)</span></a></li>
+								</c:when>
+								<c:otherwise>
+									<li ><a href="${pageContext.request.contextPath}/news/${pageBean.totalPage}">1 <span class="sr-only">(current)</span></a></li>
+								</c:otherwise>
+							</c:choose>
+							<li><a href="javascript:void(0);">... <span class="sr-only">(current)</span></a></li>
+							
+							<c:forEach var="i" begin="${pageBean.pageNum-2 }" end="${pageBean.pageNum+2}">
+								<c:if test="${pageBean.pageNum != i }">
+									<li><a href="${pageContext.request.contextPath}/news/${i}" >${i} <span class="sr-only">(current)</span></a></li>
+								</c:if>
+								<c:if test="${pageBean.pageNum == i }">
+									<li class="active"><a href="${pageContext.request.contextPath}/news/${i}">${i} <span class="sr-only">(current)</span></a></li>
+								</c:if>
+							</c:forEach>
+							<li><a href="javascript:void(0);">... <span class="sr-only">(current)</span></a></li>
+							<c:choose>
+								<c:when test="${pageBean.pageNum == pageBean.totalPage }">
+									<li class="active"><a href="${pageContext.request.contextPath}/news/${pageBean.totalPage}">${pageBean.totalPage} <span class="sr-only">(current)</span></a></li>
+								</c:when>
+								<c:otherwise>
+									<li ><a href="${pageContext.request.contextPath}/news/${pageBean.totalPage}">${pageBean.totalPage} <span class="sr-only">(current)</span></a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:otherwise>
 						
 					</c:choose>
 				</c:when>
