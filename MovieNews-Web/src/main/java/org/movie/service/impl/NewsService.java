@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
 public class NewsService implements INewsService{
 	@Autowired
 	INewsDao newsDao;
-	
+	//log4j的使用方法
 	/*
 	 */
 	public PageBean<News> getNewsListByPage(Integer pageNum,Integer pageSize) {

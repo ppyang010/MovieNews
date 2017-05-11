@@ -8,7 +8,7 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class LogAspect {
 	
-	@Pointcut("execution(* org.movie.service..*.*(..))")
+	@Pointcut("execution(* org.movie.service..*.*()) ")
 	public void pointCut() {
 		
 	}
