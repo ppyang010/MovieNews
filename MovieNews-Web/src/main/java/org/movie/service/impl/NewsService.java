@@ -2,6 +2,7 @@ package org.movie.service.impl;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.movie.dao.INewsDao;
 import org.movie.model.News;
 import org.movie.model.PageBean;
@@ -17,9 +18,16 @@ public class NewsService implements INewsService{
 	@Autowired
 	INewsDao newsDao;
 	//log4j的使用方法
+	
+	private static Logger logger = Logger.getLogger(NewsService.class);
 	/*
 	 */
 	public PageBean<News> getNewsListByPage(Integer pageNum,Integer pageSize) {
+		
+		logger.debug("debug");
+		logger.info("info");
+		logger.warn("warn");
+		logger.error("error");
 		if(StringUtils.isEmpty(pageNum)||pageNum<=Constant.ZERO){
 			pageNum=Constant.DEFAULTPAGENUM;
 		}
