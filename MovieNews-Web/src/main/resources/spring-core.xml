@@ -4,18 +4,20 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:aop="http://www.springframework.org/schema/aop"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans    
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	 xsi:schemaLocation="http://www.springframework.org/schema/beans    
                         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd    
                         http://www.springframework.org/schema/context    
                         http://www.springframework.org/schema/context/spring-context-4.0.xsd    
                         http://www.springframework.org/schema/mvc    
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                        http://www.springframework.org/schema/tx
+                        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
                         http://www.springframework.org/schema/aop
                         http://www.springframework.org/schema/aop/spring-aop.xsd">
 	<!-- 自动扫描 -->
 	<context:component-scan base-package="org.movie.dao,org.movie.service" /> 
-	<!--启动aop的自动代理  -->
-	<aop:aspectj-autoproxy />
+	
 	<!-- 引入配置文件 -->
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -60,11 +62,16 @@
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean> -->
 
-	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+	<!-- AOP相关 -->
+	<!--启动aop的自动代理  -->
+	<aop:aspectj-autoproxy />
+	<!-- (事务管理器)transaction manager, use JtaTransactionManager for global tx -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	<!--事务注解生效？  -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 	<!--AOP 日志打印  -->
 	<bean id="logAspect" class="org.movie.aspect.LogAspect">

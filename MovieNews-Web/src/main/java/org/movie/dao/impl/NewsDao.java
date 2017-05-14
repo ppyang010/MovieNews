@@ -8,6 +8,10 @@ import org.movie.dao.INewsDao;
 import org.movie.model.News;
 import org.movie.tools.Constant;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 @Repository
 public class NewsDao extends BaseDao implements INewsDao {
@@ -23,6 +27,7 @@ public class NewsDao extends BaseDao implements INewsDao {
 	 * @param limit 几条记录
 	 * @return
 	 */
+	@Transactional(propagation=Propagation.REQUIRED,isolation=Isolation.READ_COMMITTED,readOnly=true,timeout=60)
 	public List<News> getList(Integer begin,Integer rows) {
 		String sql="News.getList";
 		List<News> list=null;
