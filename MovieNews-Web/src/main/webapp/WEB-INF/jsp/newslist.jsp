@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -104,7 +105,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<c:forEach var="newsItem" items="${pageBean.list}" varStatus="s">
 						<div class="post-article">
 							<a href="${pageContext.request.contextPath}/news_jumpToNews.html?nid=${newsItem.nid}" class="post-title" target="_blank">${newsItem.title}</a>
-							<i><s:date name="#p.time"  format="yyyy-MM-dd HH:mm:ss"/></i>
+							<i><fmt:formatDate value="${newsItem.time}" pattern="yyyy-MM-dd hh:mm:ss" /></i>
 							<a id="sc${newsItem.nid}" href="javascript:void(0)" onclick="addFavorites('${newsItem.nid}')" style="float:right">收藏</a>
 							<%-- <s:iterator var="f" value="fList">
 								<s:if test="#f.nid==#p.nid">

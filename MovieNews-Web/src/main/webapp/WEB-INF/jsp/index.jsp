@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="/struts-tags" prefix="s"%>
 <!--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -226,161 +225,15 @@ function removeFocus(mid){
 										</div>
 									</s:iterator>
 							     </div>	
-							     <div id="guessYouLike" class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
-									
-									<s:if test="#session.username != null">
-										<s:if test="noHistory==1">
-											<h1>系统还在为你收集数据中 请随意浏览</h1>
-										</s:if>
-										<s:else>
-											<a href="${pageContext.request.contextPath}/news_guessYouLike.html">更多...</a>
-											<s:iterator var="p" value="gylList">
-												<div class="post-article">
-													<a href="${pageContext.request.contextPath}/news_jumpToNews.html?nid=<s:property value="#p.nid"/>"  class="post-title" target="_blank"><s:property value="#p.title"/></a>
-													<i><s:date name="#p.time"  format="yyyy-MM-dd HH:mm:ss"/></i>
-													<a id="sc<s:property value="#p.nid"/>" href="javascript:void(0)" onclick="addFavorites(<s:property value="#p.nid"/>)" style="float:right">收藏</a>
-													<s:iterator var="f" value="fList">
-														<s:if test="#f.nid==#p.nid">
-															<script>
-																//alert(<s:property value="#p.nid"/>);
-																$('[id=sc<s:property value="#p.nid"/>]').text("已收藏");
-																$('[id=sc<s:property value="#p.nid"/>]').attr('onclick','removeFavorites(<s:property value="#p.nid"/>)');
-															</script>
-														</s:if>
-													</s:iterator>
-													<p><s:property value="#p.lead"/><br> 
-													<a href="${pageContext.request.contextPath}/news_jumpToNews.html?nid=<s:property value="#p.nid"/>"  style="color:blue" target="_blank">Read more</a></p>
-												</div>
-											</s:iterator>
-										</s:else>
-									</s:if>
-									<s:else>
-										<h1>请先登录</h1>
-									
-									</s:else>
-									<div class="clearfix"></div>
-							     </div>	
-							     <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-2">
-									
-									<s:if test="#session.username != null">
-										<s:if test="noFocus==1">
-											<h1>您还没有关注信息</h1>
-										</s:if>
-										<s:else>
-											<a href="${pageContext.request.contextPath}/news_yourFocus.html">更多...</a>
-											<s:iterator var="p" value="focusList">
-												<div class="post-article">
-													<a href="${pageContext.request.contextPath}/news_jumpToNews.html?nid=<s:property value="#p.nid"/>"  class="post-title" target="_blank"><s:property value="#p.title"/></a>
-													<i><s:date name="#p.time"  format="yyyy-MM-dd HH:mm:ss"/></i>
-													<a id="sc<s:property value="#p.nid"/>" href="javascript:void(0)" onclick="addFavorites(<s:property value="#p.nid"/>)" style="float:right">收藏</a>
-													<s:iterator var="f" value="fList">
-														<s:if test="#f.nid==#p.nid">
-															<script>
-																//alert(<s:property value="#p.nid"/>);
-																$('[id=sc<s:property value="#p.nid"/>]').text("已收藏");
-																$('[id=sc<s:property value="#p.nid"/>]').attr('onclick','removeFavorites(<s:property value="#p.nid"/>)');
-															</script>
-														</s:if>
-													</s:iterator>
-													<p><s:property value="#p.lead"/><br> 
-													<a href="${pageContext.request.contextPath}/news_jumpToNews.html?nid=<s:property value="#p.nid"/>"  style="color:blue" target="_blank">Read more</a></p>
-												</div>
-											</s:iterator>
-										</s:else>
-									</s:if>
-									<s:else>
-										<h1>请先登录</h1>
-									
-									</s:else>
-										<div class="clearfix"></div>
-							     </div>	
-							     <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-3">
-									<ul class="tab_img">
-									  <li>
-										<div class="view view-first">
-					   		  			  <a href="movie-select-show.html"> <img src="${pageContext.request.contextPath}/js/images/pic-1.jpg" class="img-responsive" alt=""/></a>
-											 <div class="mask">
-						                        <div class="info1"> </div>
-								              </div>
-								                <div class="tab_desc">
-													<a href="movie-select-show.html">Book Now</a>
-											  </div>
-										  </div>
-										</li>
-										<li>
-										  <div class="view view-first">
-					   		  			  <a href="movie-select-show.html"> <img src="${pageContext.request.contextPath}/js/images/pic-1.jpg" class="img-responsive" alt=""/></a>
-											 <div class="mask">
-						                        <div class="info1"> </div>
-								              </div>
-								                <div class="tab_desc">
-													<a href="movie-select-show.html">Book Now</a>
-											  </div>
-										  </div>
-										</li>
-										<li>
-										  <div class="view view-first">
-					   		  			  <a href="movie-select-show.html"> <img src="${pageContext.request.contextPath}/js/images/pic-9.jpg" class="img-responsive" alt=""/></a>
-											 <div class="mask">
-						                        <div class="info1"> </div>
-								              </div>
-								                <div class="tab_desc">
-													<a href="movie-select-show.html">Book Now</a>
-											  </div>
-										  </div>
-										</li>
-										<div class="clearfix"></div>
-									</ul>
-						    	</div>		        					 	        					 
+							     
+							     
+							   	        					 	        					 
 			     		    </div>	
                         </div>
 					</div>
 				</div>	
 				<div class="clearfix"></div>
-				<div class="featured">
-					<h4>影视作品</h4>
-					<ul id="demo-2">
-					<s:iterator var="m" value="mList">
-						<li style="width: 110px;height: 140px" class="dropdown">
-							<div class="f-movie" style="overflow:hidden;">
-								<div class="f-movie-img" style="">
-									<a href="${pageContext.request.contextPath}/movies_moviesSingle.html?id=<s:property value="#m.id" />" target="_blank">
-									<s:if test="#im.id.length()>14">
-										<img src="${pageContext.request.contextPath}/<s:property value="#m.images" />" style="width: 80%;max-height: 240px; "alt="" />
-									</s:if>
-									<s:else>
-										<img src="<s:property value="#m.images" />" style="max-height: 239px;width: 65px;height:100px"alt="" />
-									</s:else>
-									</a>
-								</div>
-									<div class="f-movie-name">
-										<a data-toggle="dropdown" href="#" style="float:left" target="_blank" >
-										<s:property value="#m.title" /> </a>
-										<ul class="dropdown-menu animated" data-animation="fadeInDown">
-	                       					<div>
-	                       					<p style="color: black;"><b>地区：</b><s:property value="#m.countries" /></p>
-	                       					<p style="color: black;"><b>豆瓣评分：</b><s:property value="#m.rating" /></p>
-											<p style="color: black;"><b>导演：</b><s:property value="#m.directors" /></p>
-											<p  style="color: black;"><b>主演：</b><s:property value="#m.casts" /></p>
-	                       					</div>
-	                   					</ul>
-										
-										
-									</div>
-								<!-- 
-								<div class="f-buy-tickets">
-									<a href="movie-select-show.html">BUY TICKETS</a>
-								</div>
-								-->
-							</div>
-						</li>
-					</s:iterator>
-					
-						
-						
-					</ul>
-					<div class="clearfix"></div>
-				</div>
+			
 			</div>
 			<div class="right-side-bar">
 				<div class="top-movies-in-india">
@@ -421,18 +274,6 @@ function removeFocus(mid){
 							</li>
 						</ul>
 					</li>	<br/> <br/>
-								<!--	 test="#status.getCount() <= 3">
-									<div class="left-img col-md-5" >
-										<img src="<s:property value="#com.images.small" />" />
-										</div>
-										<div class="left-img col-md-7">
-										<p>导演：  <br/>
-										主演：<br/>
-										类型：<br/>
-										豆瓣评分：
-										</p>
-										</div>
-										-->
 					
 					</s:iterator>
 	                </ul>
@@ -441,32 +282,7 @@ function removeFocus(mid){
 					<h3>票房榜</h3>
 					<p class="payText">数据缺失<a href="#">Read more</a></p>
 				</div>
-				<div class="our-blog">
-					<h5>热点新闻</h5>
-					<a href="${pageContext.request.contextPath}/news_toHotNewsList.action">更多...</a>
-					<s:iterator var="p" value="hotnList">
-						<div class="post-article">
-							<a href="${pageContext.request.contextPath}/news_jumpToNews.html?nid=<s:property value="#p.nid"/>" class="post-title"  target="_blank"><s:property value="#p.title"/></a>
-							<i><s:date name="#p.time"  format="yyyy-MM-dd HH:mm:ss"/></i>
-							<a id="sc<s:property value="#p.nid"/>" href="javascript:void(0)" onclick="addFavorites(<s:property value="#p.nid"/>)" style="float:right">收藏</a>
-							<s:iterator var="f" value="fList">
-								<s:if test="#f.nid==#p.nid">
-									<script>
-										//alert(<s:property value="#p.nid"/>);
-										$('[id=sc<s:property value="#p.nid"/>]').text("已收藏");
-										$('[id=sc<s:property value="#p.nid"/>]').attr('onclick','removeFavorites(<s:property value="#p.nid"/>)');
-									</script>
-								</s:if>
-							</s:iterator>
-							
-							
-							<!--  
-							<p><s:property value="#p.lead"/><br> 
-							<a href="<s:property value="#p.url"  />" style="color:blue" target="blank">Read more</a></p>
-							-->
-						</div>
-					</s:iterator>
-				</div>
+				
 			</div>
 			<div class="clearfix"></div>			
 			</div>
