@@ -17,8 +17,8 @@
 							<ul class="slides">
 							<s:iterator var="p" value="pList">
 							<li>
-							  <a href="${basePath}/movies_moviesSingle.html?id=<s:property value="#p.mid" />">
-								<img src="${basePath}/<s:property value="#p.image" />" class="img-responsive" alt="" />
+							  <a href="${basePath}/movies_moviesSingle.html?id=">
+								<img src="${basePath}/static/images/pic4.jpg" class="img-responsive" alt="" />
 								</a>
 							</li>
 							</s:iterator>
@@ -44,9 +44,10 @@
 				 </script>
 	         </div>
 			 <div class="col-md-4 banner-right">
+			 	${hello!}
 				<h2>系统公告</h2>
 						<div class="post-article">
-							<a href="${basePath}/notice_toNotice.html?id=<s:property value="#p.id"/>"  class="post-title" target="_blank" style="font-weight:500">
+							<a href="${basePath}/notice_toNotice.html?id="  class="post-title" target="_blank" style="font-weight:500">
 							空白标题</a>
 							<span >2017-01-01 24：00</span>
 						</div>

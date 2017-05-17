@@ -82,7 +82,6 @@ function removeFocus(mid){
 		
 		
 	</div>
-	<%@ include file="foot.jsp" %>
 	<#include "foot.ftl" />
 	</body>
 </html>
