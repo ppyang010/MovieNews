@@ -23,6 +23,7 @@ public class TestController {
 	@RequestMapping(value="/upload",method=RequestMethod.POST)
 	public String upload(HttpServletRequest request,HttpServletResponse response,
 			@RequestParam("file") MultipartFile  file) {
+		String[] strings = request.getParameterValues("checkbox");
 		String fileName=file.getOriginalFilename();
 		String path=request.getServletContext().getRealPath("static");
 		String filePath=path+"/"+fileName;
@@ -64,4 +65,26 @@ public class TestController {
 		
 		return "upload";
 	}
+	
+	
+	//表单获取测试
+	@RequestMapping(value="/upload2",method=RequestMethod.POST)
+	public String upload2(HttpServletRequest request,HttpServletResponse response,
+			@RequestParam("checkbox") String[] box1,TestBean bean) {
+		System.out.println(box1);
+		System.out.println(bean.checkbox);
+		return "upload";
+	}
+}
+class TestBean{
+	String [] checkbox;
+
+	public String[] getCheckbox() {
+		return checkbox;
+	}
+
+	public void setCheckbox(String[] checkbox) {
+		this.checkbox = checkbox;
+	}
+	
 }
