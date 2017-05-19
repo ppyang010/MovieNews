@@ -37,13 +37,13 @@ function searchMyDataBase(){
         
             <div id="defaultmenu" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">主页</a></li>	
+                    <li class="active"><a href="${basePath}/index">主页</a></li>	
                     <!-- Mega Menu -->
 					<li class="dropdown ">
 						<a href="#" data-toggle="dropdown" class="dropdown-toggle">新闻<b class="caret"></b> </a>
                     		 <ul class="dropdown-menu" role="menu">
 
-							<li><a href="${basePath}/news_toNewsList.html">全部新闻</a></li>
+							<li><a href="${basePath}/news/1">全部新闻</a></li>
 							<li><a href="${basePath}/news_toHotNewsList.html">热点新闻</a></li>
 							</ul>
                     </li>

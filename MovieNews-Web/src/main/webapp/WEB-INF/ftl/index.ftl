@@ -130,7 +130,7 @@
 						  </ul>				  	 
 							<div class="resp-tabs-container">
 							    <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
-							    	<a href="${basePath}/news_toNewsList.html">更多...</a>
+							    	<a href="${basePath}/news/1">更多...</a>
 										<#list pageBean.list as n>
 											<div class="post-article">
 												<a href="${basePath}/news_jumpToNews.html?nid="  class="post-title" target="_blank">
