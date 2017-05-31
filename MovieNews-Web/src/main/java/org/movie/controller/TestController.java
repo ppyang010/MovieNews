@@ -127,8 +127,12 @@ public class TestController {
 		}
 		
 	}
-	
-	
+	@RequestMapping("sessionID")
+	public void sessionID(HttpServletRequest request){
+		String id=request.getSession().getId();
+		System.out.println("sessionID="+id);
+		
+	}
 }
 class TestBean{
 	String [] checkbox;
