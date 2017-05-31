@@ -11,10 +11,10 @@ import net.rubyeye.xmemcached.utils.AddrUtil;
 public class MemcacheDemo {
 	
 	public static void main (String[] str) {
-		XMemcachedClientBuilder builder = new XMemcachedClientBuilder(AddrUtil.getAddresses("192.168.101.177:11211"));
+		XMemcachedClientBuilder builder = new XMemcachedClientBuilder(AddrUtil.getAddresses("192.168.101.178:11212"));
 		try {
 			MemcachedClient memcachedClient = builder.build();
-			memcachedClient.set("hello", 0, "world");//set操作 设置（添加删除） 参数 key  超时时间（单位为s） 0为永久
+			memcachedClient.set("hello", 0, "world");//set操作 设置（添加更新） 参数 key  超时时间（单位为s） 0为永久
 			String val=memcachedClient.get("hello");//get操作 获取
 			System.out.println("hello="+val+"---------");
 			memcachedClient.delete("hello");

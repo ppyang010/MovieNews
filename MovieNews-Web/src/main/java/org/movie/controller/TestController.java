@@ -5,11 +5,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,9 +21,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
+import net.rubyeye.xmemcached.MemcachedClient;
+import net.rubyeye.xmemcached.exception.MemcachedException;
+
 @Controller
 @RequestMapping("/test")
 public class TestController {
+	
+	@Autowired
+	MemcachedClient memcachedClient;
 	
 	@RequestMapping(value="/upload",method=RequestMethod.POST)
 	public String upload(HttpServletRequest request,HttpServletResponse response,
@@ -95,6 +103,27 @@ public class TestController {
 			request.getRequestDispatcher("/news/4").forward(request, response);
 		default:
 			return "redirect:/news/{num}";
+		}
+		
+	}
+	
+	//memcached demo
+	@RequestMapping("setcache")
+	public String setMemcached (@RequestParam("key") String key,@RequestParam("value") String value){
+		try {
+			memcachedClient.set(key, 0, value);
+		} catch (TimeoutException | InterruptedException | MemcachedException e) {
+			System.out.println("setMemcached ERROR !!!!!!"+e);
+		}
+		return "forward:/test/getcache";
+	}
+	@RequestMapping("getcache")
+	public void getMemcached (@RequestParam("key") String key){
+		try {
+			String val = memcachedClient.get(key,3000);//等待3秒否则抛出超时
+			System.out.println(val);
+		} catch (TimeoutException | InterruptedException | MemcachedException e) {
+			System.out.println("setMemcached ERROR !!!!!! "+e);
 		}
 		
 	}
