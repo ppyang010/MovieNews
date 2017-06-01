@@ -78,7 +78,7 @@
 	<bean name="memcachedClient"
                 class="net.rubyeye.xmemcached.utils.XMemcachedClientFactoryBean" destroy-method="shutdown">
                 <property name="servers">
-                        <value>192.168.101.177:11211 192.168.101.178:11212</value>
+                        <value>192.168.101.178:11212</value>
                 </property>
                 <!-- 权重 -->
                  <property name="weights">

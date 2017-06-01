@@ -128,9 +128,11 @@ public class TestController {
 		
 	}
 	@RequestMapping("sessionID")
-	public void sessionID(HttpServletRequest request){
+	public String sessionID(HttpServletRequest request,Model model){
 		String id=request.getSession().getId();
 		System.out.println("sessionID="+id);
+		model.addAttribute("id", id);
+		return "demo";
 		
 	}
 }
