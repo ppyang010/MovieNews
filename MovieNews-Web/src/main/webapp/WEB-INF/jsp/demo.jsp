@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-tomcat802
+tomcat1
 sessionID=${id}
 </body>
 </html>

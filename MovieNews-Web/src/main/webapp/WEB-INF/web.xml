@@ -78,7 +78,10 @@
     <servlet-name>default</servlet-name>
     <url-pattern>*.png</url-pattern>
   </servlet-mapping>
-  <security-constraint>
+  
+  
+  
+  <!-- <security-constraint>
     <web-resource-collection>
       <web-resource-name>securedapp</web-resource-name>
       <url-pattern>/news/*</url-pattern>
@@ -86,7 +89,7 @@
     <user-data-constraint>
       <transport-guarantee>CONFIDENTIAL</transport-guarantee>
     </user-data-constraint>
-  </security-constraint>
+  </security-constraint> -->
   <filter>
     <display-name>SwitchHttpsFilter</display-name>
     <filter-name>SwitchHttpsFilter</filter-name>
