@@ -3,8 +3,9 @@
   PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
+	<!-- F:\10mybait\mybatis-generator-core-1.3.2\lib\mysql-connector-java-5.1.25-bin.jar -->
 	<classPathEntry
-		location="F:\10mybait\mybatis-generator-core-1.3.2\lib\mysql-connector-java-5.1.25-bin.jar" />
+		location="G:\ccy\codebuild\mybatis-generator-core-1.3.2\lib\mysql-connector-java-5.1.39-bin.jar" />
 	<context id="DB2Tables" targetRuntime="MyBatis3">
 		<commentGenerator>
 			<property name="suppressDate" value="true" />
@@ -30,7 +31,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="news" domainObjectName="News"
+		<table tableName="user" domainObjectName="User"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">

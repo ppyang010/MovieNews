@@ -108,7 +108,7 @@
   </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 	<!-- Button trigger modal  -->
-	<a href="javascript:void(0);" id="localcity"  class="top-tips-a"><%-- <s:property value="#session.city"/> --%></a>
+	<a href="javascript:void(0);" id="localcity"  class="top-tips-a">杭州</a>
 	
 	<a class="play-icon " data-toggle="modal" data-target="#cityModal" >切换城市</a>
 	<!---pop-up-box---->  
@@ -176,24 +176,21 @@
 						});
 				</script>
 				<!-- Large modal -->
-				<%-- <s:if test="#session.username != null">
 				
-				<a class="top-tips-a" href="${basePath}/user_account.html" ><s:property value="#session.username"/> </a>
+				<a class="top-tips-a" href="${basePath}/user_account.html" > </a>
 				<a class="top-tips-a" href="${basePath}/user_account.html" >个人中心</a>
 				<a class="top-tips-a" href="${basePath}/favorites_page.html" >收藏夹</a>
 				<a class="top-tips-a" href="${basePath}/newsHistory_page.html" >历史</a>
 				<a class="top-tips-a" href="javascript:void(0);" onclick="logout()">注销</a>
-				</s:if>    --%>
-				<%-- <s:else> --%>
-						<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-		    			登陆/注册</button>
-				<%-- </s:else>  --%>
+				<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    			登陆/注册</button>
+				
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" 
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
     <!-- log or register start -->
-        <%@ include file="log-register.jsp" %>
+        <#include "./log_register.ftl">
     <!-- log or register end -->
     </div>
 </div>

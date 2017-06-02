@@ -32,42 +32,7 @@ function toMoviesList(link){
 	window.open(link);  
 }
 
-/**
- * 添加关注
- */
-function addFocus(mid){
-	$.ajax({
-		   type: "POST",
-		   url: "${basePath}/focus_save.action",
-		   data: "mid="+mid,
-		   success: function(data){
-		     if(data.flag){
-		    	 alert('关注成功!');
-		    	$('[id=gz'+mid+']').text("已关注");
-		    	$('[id=gz'+mid+']').attr('onclick','removeFocus('+mid+')');		    	 
-		     }
-		     else
-		    	 alert('关注失败!'+data.msg);
-		   }
-		});
-}
-//移除关注 根据影片id
-function removeFocus(mid){
-	$.ajax({
-		   type: "POST",
-		   url: "${basePath}/focus_removeFocus.action",
-		   data: "mid="+mid,
-		   success: function(data){
-		     if(data.flag){
-		    	 alert('移除成功!');
-		    	 $('[id=gz'+mid+']').text("关注");
-		    	 $('[id=gz'+mid+']').attr('onclick','addFocus('+mid+')');		    	 
-		     }
-		     else
-		    	 alert('移除失败!'+data.msg);
-		   }
-		});
-}
+
 
 </script>
 <body>
