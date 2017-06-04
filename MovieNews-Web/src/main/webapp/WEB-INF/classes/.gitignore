@@ -1,0 +1,9 @@
+/db.properties
+/generatorConfig.xml
+/log4j.properties
+/memcached.properties
+/mybatis-config.xml
+/spring-core-dev.xml
+/spring-core-test.xml
+/spring-core.xml
+/spring-mvc.xml

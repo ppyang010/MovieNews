@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="UserMapper">
-  <resultMap id="BaseResultMap" type="org.movie.model.User">
+  <resultMap id="UserMap" type="org.movie.model.User">
     <id column="uid" jdbcType="INTEGER" property="uid" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -15,7 +15,28 @@
   <sql id="Base_Column_List">
     uid, username, password, name, sex, email, phone, state, code
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="getUserInfo" parameterType="hashmap" resultMap="UserMap">
+  		select 
+  		<include refid="Base_Column_List" />
+  		from user 
+  		<trim prefix="where" prefixOverrides ="and |or " >
+		  <if test="uid != null and uid != '' ">
+	        uid=#{uid}
+	      </if>
+	      <if test="username != null and username != '' ">
+	        and username=#{username}
+	      </if>
+	      <if test="email != null and email != '' ">
+	        and email=#{email}
+	      </if>
+	      <if test="phone != null and phone != '' ">
+	        and phone=#{phone}
+	      </if>
+  		</trim>
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="UserMap">
     select 
     <include refid="Base_Column_List" />
     from user

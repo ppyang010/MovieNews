@@ -1,5 +1,9 @@
 package org.movie.tools;
-
+/**
+ * 常量类
+ * @author Administrator
+ *
+ */
 public interface Constant {
 	public static final int DEFAULTPAGENUM=1;
 	public static final int DEFAULTPAGESIZE=10;

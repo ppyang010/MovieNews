@@ -1,17 +1,10 @@
 package org.movie.dao;
 
+import java.util.Map;
+
 import org.movie.model.User;
 
 public interface IUserDao {
-    int deleteByPrimaryKey(Integer uid);
+    User getUserInfo(User user);
 
-    int insert(User record);
-
-    int insertSelective(User record);
-
-    User selectByPrimaryKey(Integer uid);
-
-    int updateByPrimaryKeySelective(User record);
-
-    int updateByPrimaryKey(User record);
 }

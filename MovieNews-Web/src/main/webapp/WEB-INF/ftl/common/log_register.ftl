@@ -14,11 +14,11 @@
 		   	     dataType: "json",
 		   	     success: function(data){
 		   	           //返回提示信息       
-		   	    	 if(data.flag){
-		   	    		 alert(data.msg);
-		   	    		location.href = "${basePath}/index"
+		   	    	 if(data.resultCode=='200'){
+		   	    		 alert(data.resultMsg);
+		   	    		 location.href = "${basePath}/index"
 		   	    	 } else{
-		   	    		 alert(data.msg);
+		   	    		 alert(data.resultMsg);
 		   	    	 }
 		                
 		   	     }
