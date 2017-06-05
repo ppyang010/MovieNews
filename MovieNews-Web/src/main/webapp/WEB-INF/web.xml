@@ -25,6 +25,20 @@
     <param-name>spring.profiles.active</param-name>
     <param-value>test,base</param-value>
   </context-param>
+  
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  </listener>
+  
+  <listener>
+    <listener-class>org.movie.listener.SessionListener</listener-class>
+  </listener>
+  
+  
+  
   <filter>
     <filter-name>encodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -38,12 +52,19 @@
     <filter-name>encodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
-  <listener>
-    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
-  </listener>
+  
+   <filter>
+    <display-name>SwitchHttpsFilter</display-name>
+    <filter-name>SwitchHttpsFilter</filter-name>
+    <filter-class>org.movie.filter.SwitchHttpsFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>SwitchHttpsFilter</filter-name>
+    <url-pattern>/SwitchHttpsFilter</url-pattern>
+  </filter-mapping>
+  
+  
+  
   <servlet>
     <servlet-name>SpringMVC</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -78,25 +99,15 @@
     <servlet-name>default</servlet-name>
     <url-pattern>*.png</url-pattern>
   </servlet-mapping>
-  
-  
-  
-  <!-- <security-constraint>
-    <web-resource-collection>
-      <web-resource-name>securedapp</web-resource-name>
-      <url-pattern>/news/*</url-pattern>
-    </web-resource-collection>
-    <user-data-constraint>
-      <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-    </user-data-constraint>
-  </security-constraint> -->
-  <filter>
-    <display-name>SwitchHttpsFilter</display-name>
-    <filter-name>SwitchHttpsFilter</filter-name>
-    <filter-class>org.movie.filter.SwitchHttpsFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>SwitchHttpsFilter</filter-name>
-    <url-pattern>/SwitchHttpsFilter</url-pattern>
-  </filter-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ApplicationContextLoaderServlet</display-name>
+    <servlet-name>ApplicationContextLoaderServlet</servlet-name>
+    <servlet-class>org.movie.servlet.ApplicationContextLoaderServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+ 
+ 
+ 
+
 </web-app>

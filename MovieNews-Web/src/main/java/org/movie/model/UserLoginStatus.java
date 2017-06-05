@@ -1,6 +1,13 @@
 package org.movie.model;
 
-public class UserLoginStatus {
+import java.io.Serializable;
+
+public class UserLoginStatus implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6211815263104689844L;
 	
 	//手机网页登陆状态 0：未登陆   1:已登陆
 	private int wapLoginStatus=0;
@@ -9,11 +16,17 @@ public class UserLoginStatus {
 	//客户端（安卓，ios） 0：未登陆 1:已登陆
 	private int clientLoginStatus=0;
 	//用户id
-	private String uid;
+	private Integer uid;
 	private String wapSessionID;
 	private String wwwSessionID;
 	private String clientSessionID;
 	
+	public UserLoginStatus() {
+		super();
+		this.wapLoginStatus=0;
+		this.wwwLoginStatus=0;
+		this.clientLoginStatus=0;
+	}
 	//根据门户类型获取登陆状态
 	public int getLoginStatus(int clientType) {
 		return 0;
@@ -41,10 +54,10 @@ public class UserLoginStatus {
 	public void setClientLoginStatus(int clientLoginStatus) {
 		this.clientLoginStatus = clientLoginStatus;
 	}
-	public String getUid() {
+	public Integer getUid() {
 		return uid;
 	}
-	public void setUid(String uid) {
+	public void setUid(Integer uid) {
 		this.uid = uid;
 	}
 	public String getWapSessionID() {
