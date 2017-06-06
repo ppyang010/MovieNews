@@ -10,6 +10,7 @@ import org.movie.model.User;
 import org.movie.model.UserLoginStatus;
 import org.movie.tools.ApplicationContextUtil;
 import org.movie.tools.Constant;
+import org.movie.tools.MemcachedUtil;
 import org.movie.tools.MySessionContext;
 import org.springframework.util.StringUtils;
 
@@ -43,25 +44,10 @@ public class SessionListener implements HttpSessionListener {
     public void sessionDestroyed(HttpSessionEvent event )  { 
     	HttpSession session=event.getSession();
     	sessionContext.delSession(session.getId());
-    	User userInfo = (User) session.getAttribute("userInfo");
-    	//session中有用户信息
-    	if(!StringUtils.isEmpty(userInfo)){
-    		MemcachedClient memcacahedClient = (MemcachedClient) ApplicationContextUtil
-    				.getBean("memcachedClient");
-    		//清楚缓存中的用户信息
-    		try {
-    			UserLoginStatus loginStatus=memcacahedClient.get("userLoginStatus"+userInfo.getUid());
-    			if(StringUtils.isEmpty(loginStatus)){
-					loginStatus=new UserLoginStatus();
-				}else{
-					loginStatus.setWwwLoginStatus(Constant.NOT_LOGGED_IN);
-					loginStatus.setWwwSessionID("");
-				}
-    			memcacahedClient.set("userLoginStatus"+userInfo.getUid(), 60*30, loginStatus);
-			} catch (TimeoutException | InterruptedException | MemcachedException e) {
-				
-			}
-    	}
+    	//重置缓存中对应类型的登陆状态 
+    	MemcachedUtil.changLoginStatusCache(session.getId());
+    	
+    	
     	
     	
     	

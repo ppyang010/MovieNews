@@ -5,7 +5,11 @@ import java.util.HashMap;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.context.support.StaticApplicationContext;
-
+/**
+ * 自定义session上下文
+ * @author s
+ *
+ */
 public class MySessionContext {
 	
 	private static final MySessionContext instance =new MySessionContext();

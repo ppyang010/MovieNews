@@ -177,7 +177,15 @@
 				</script>
 				<!-- Large modal -->
 				
-				<a class="top-tips-a" href="${basePath}/user_account.html" > </a>
+				<a class="top-tips-a" href="${basePath}/user_account.html" >
+				<#if userInfo??>
+				${userInfo.name} 
+				<#elseif otherDeviceLogin?? && otherDeviceLogin == 1 >
+					其他地方登陆
+				<#else>
+					未登录
+				</#if>
+				</a>
 				<a class="top-tips-a" href="${basePath}/user_account.html" >个人中心</a>
 				<a class="top-tips-a" href="${basePath}/favorites_page.html" >收藏夹</a>
 				<a class="top-tips-a" href="${basePath}/newsHistory_page.html" >历史</a>

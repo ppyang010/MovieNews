@@ -2,6 +2,9 @@ package org.movie.model;
 
 import java.io.Serializable;
 
+import org.movie.tools.Constant;
+import org.springframework.util.StringUtils;
+
 public class UserLoginStatus implements Serializable {
 	
 	/**
@@ -29,13 +32,82 @@ public class UserLoginStatus implements Serializable {
 	}
 	//根据门户类型获取登陆状态
 	public int getLoginStatus(int clientType) {
-		return 0;
+		int status=0;
+		switch (clientType) {
+		case Constant.PORTALTYPE_WAP:
+			status=wapLoginStatus;
+			break;
+		case Constant.PORTALTYPE_WWW:
+			status=wwwLoginStatus;
+			break;
+		case Constant.PORTALTYPE_CLIENT:
+			status=clientLoginStatus;
+			break;
+		default:
+			status=0;
+			break;
+		}
+		return status;
 	}
 	//根据门户类型设置登陆状态
-	public void setLoginStatus(int clientType,int status) {
-		this.wapLoginStatus = status;
+	public void setLoginStatus(int clientType,Integer status) {
+		if(StringUtils.isEmpty(status)){
+			return ;
+		}
+		switch (clientType) {
+		case Constant.PORTALTYPE_WAP:
+			this.wapLoginStatus=status;
+			break;
+		case Constant.PORTALTYPE_WWW:
+			this.wwwLoginStatus=status;
+			break;
+		case Constant.PORTALTYPE_CLIENT:
+			this.clientLoginStatus=status;
+			break;
+		default:
+			this.wwwLoginStatus=status;
+			break;
+		}
 	}
-	
+	//根据门户类型获取登陆的sessionID
+	  public String getLoginSession(int clientType) {
+			String sessionID=null;
+			switch (clientType) {
+			case Constant.PORTALTYPE_WAP:
+				sessionID=wapSessionID;
+				break;
+			case Constant.PORTALTYPE_WWW:
+				sessionID=wwwSessionID;
+				break;
+			case Constant.PORTALTYPE_CLIENT:
+				sessionID=clientSessionID;
+				break;
+			default:
+				sessionID=null;
+				break;
+			}
+			return sessionID;
+		}
+		//根据门户类型设置登陆状态
+		public void setLoginSession(int clientType,String sessionID) {
+			if(StringUtils.isEmpty(sessionID)){
+				return ;
+			}
+			switch (clientType) {
+			case Constant.PORTALTYPE_WAP:
+				this.wapSessionID=sessionID;
+				break;
+			case Constant.PORTALTYPE_WWW:
+				this.wwwSessionID=sessionID;
+				break;
+			case Constant.PORTALTYPE_CLIENT:
+				this.clientSessionID=sessionID;
+				break;
+			default:
+				this.wwwSessionID=sessionID;
+				break;
+			}
+		}
 	public int getWapLoginStatus() {
 		return wapLoginStatus;
 	}
