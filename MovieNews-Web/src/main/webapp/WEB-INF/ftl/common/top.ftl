@@ -177,35 +177,35 @@
 				</script>
 				<!-- Large modal -->
 				
-				<a class="top-tips-a" href="${basePath}/user_account.html" >
+				<span class="top-tips-a"  >在线人数 ${sessionCount}</span>
 				<#if userInfo??>
-				${userInfo.name} 
-				<#elseif otherDeviceLogin?? && otherDeviceLogin == 1 >
-					其他地方登陆
-				<#else>
-					未登录
-				</#if>
-				</a>
+				<a class="top-tips-a" href="${basePath}/user_account.html" >${userInfo.name}</a>
 				<a class="top-tips-a" href="${basePath}/user_account.html" >个人中心</a>
 				<a class="top-tips-a" href="${basePath}/favorites_page.html" >收藏夹</a>
 				<a class="top-tips-a" href="${basePath}/newsHistory_page.html" >历史</a>
 				<a class="top-tips-a" href="javascript:void(0);" onclick="logout()">注销</a>
-				<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    			登陆/注册</button>
-				
+				<#elseif otherDeviceLogin?? && otherDeviceLogin == 1 >
+					<span class="top-tips-a">其他地方登陆</span>
+					<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    				登陆/注册</button>
+				<#else>
+					<span class="top-tips-a">未登陆</span>
+					<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    				登陆/注册</button>
+				</#if>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" 
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-    <!-- log or register start -->
-        <#include "./log_register.ftl">
-    <!-- log or register end -->
-    </div>
-</div>
-<script>
-//$('#myModal').modal('show');
-</script>
-</div>
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" 
+			    aria-hidden="true">
+			    <div class="modal-dialog modal-lg">
+			    <!-- log or register start -->
+			        <#include "./log_register.ftl">
+			    <!-- log or register end -->
+			    </div>
+			</div>
+			<script>
+			//$('#myModal').modal('show');
+			</script>
+			</div>
 				<div class="clearfix"></div>
 			</div>
 		</div>

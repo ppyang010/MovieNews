@@ -13,7 +13,8 @@ import org.springframework.context.support.StaticApplicationContext;
 public class MySessionContext {
 	
 	private static final MySessionContext instance =new MySessionContext();
-	private HashMap<String, Object> sessionMap;
+	private HashMap<String, Object> sessionMap;//session集合
+	private int sessionount=0;
 	
 	private MySessionContext(){
 		sessionMap=new HashMap<String, Object>();
@@ -52,4 +53,22 @@ public class MySessionContext {
 			sessionMap.remove(sessionId);
 		}
 	}
+	/**
+	 * session总数自增加
+	 */
+	public synchronized void incSessionCount(){
+		sessionount++;
+	}
+	
+	/**
+	 * session总数自减
+	 */
+	public synchronized void decSessionCount(){
+		sessionount--;
+	}
+	
+	public int getSessionCount(){
+		return sessionount;
+	}
+	
 }

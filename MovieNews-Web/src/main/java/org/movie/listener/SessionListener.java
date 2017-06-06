@@ -36,6 +36,8 @@ public class SessionListener implements HttpSessionListener {
      */
     public void sessionCreated(HttpSessionEvent event)  {
     	sessionContext.addSession(event.getSession());
+    	//session总数自增
+    	sessionContext.incSessionCount();
     }
 
 	/**
@@ -44,8 +46,11 @@ public class SessionListener implements HttpSessionListener {
     public void sessionDestroyed(HttpSessionEvent event )  { 
     	HttpSession session=event.getSession();
     	sessionContext.delSession(session.getId());
+    	//session总数自减
+    	sessionContext.decSessionCount();
     	//重置缓存中对应类型的登陆状态 
     	MemcachedUtil.changLoginStatusCache(session.getId());
+    	
     	
     	
     	
