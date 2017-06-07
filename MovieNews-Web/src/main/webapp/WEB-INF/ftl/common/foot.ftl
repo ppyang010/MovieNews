@@ -67,6 +67,10 @@
 							
 						});
 					</script>
+					
+					
 				<a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+				
+				<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1262138798'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1262138798%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
 			
 
