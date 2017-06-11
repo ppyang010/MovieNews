@@ -1,5 +1,5 @@
 
-<div class="footer">
+<div class="footer container ">
 			<div class="col-md-3 footer-left">
 				<div class="f-mov-list">
 					<h4>Latest Movies</h4>
