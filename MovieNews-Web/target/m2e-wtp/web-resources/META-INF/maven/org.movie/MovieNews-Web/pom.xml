@@ -234,6 +234,13 @@
 		  <artifactId>xmemcached</artifactId>
 		  <version>2.3.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+		<!-- redis 驱动 -->
+		<dependency>
+		    <groupId>redis.clients</groupId>
+		    <artifactId>jedis</artifactId>
+		    <version>2.9.0</version>
+		</dependency>
 	</dependencies>
-
+		
 </project>
