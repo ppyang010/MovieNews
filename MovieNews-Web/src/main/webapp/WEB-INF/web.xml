@@ -23,7 +23,7 @@
   </context-param>
   <context-param>
     <param-name>spring.profiles.active</param-name>
-    <param-value>test,base</param-value>
+    <param-value>dev,base</param-value>
   </context-param>
   
   <listener>

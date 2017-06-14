@@ -78,8 +78,8 @@
 	<bean name="memcachedClient"
                 class="net.rubyeye.xmemcached.utils.XMemcachedClientFactoryBean" destroy-method="shutdown">
                 <property name="servers">
-                      <value>192.168.177.211:11211</value>
-                       <!--  <value>192.168.101.178:11211</value>  -->
+                     <!--  <value>192.168.177.211:11211</value> -->
+                      <value>192.168.101.178:11211</value>
                 </property>
                 <!-- 权重 -->
                  <property name="weights">
@@ -92,4 +92,16 @@
                         <bean class="net.rubyeye.xmemcached.impl.KetamaMemcachedSessionLocator"></bean>
                 </property>
    </bean>
+   
+   <!-- redis相关 -->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">  
+	    <property name="maxIdle" value="${redis.pool.maxIdle}" />  
+	    <property name="maxTotal" value="${redis.pool.maxTotal}" />    
+	    <property name="maxWaitMillis" value="${redis.pool.maxWaitMillis}" />   
+	    <property name="testOnBorrow" value="${redis.pool.testOnBorrow}" />  
+	    <!-- <property name="testOnReturn" value="${redis.testOnReturn}" />  --> 
+	</bean> 	
+
+	  <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"  
+        p:host-name="${redis.host}" p:port="${redis.port}"  />  
 </beans>  

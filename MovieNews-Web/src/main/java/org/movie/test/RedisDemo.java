@@ -11,5 +11,7 @@ public class RedisDemo
         System.out.println("Connection to server sucessfully");
         //查看服务是否运行
         System.out.println("Server is running: "+jedis.ping());
+        jedis.set("hello", "world");
+        System.out.println("hello is " +jedis.get("hello"));
     }
 }
