@@ -107,7 +107,7 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
  
- 
+ <distributable/>
  
 
 </web-app>
