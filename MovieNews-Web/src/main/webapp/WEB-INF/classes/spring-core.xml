@@ -103,5 +103,11 @@
 	</bean> 	
 
 	  <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"  
-        p:host-name="${redis.host}" p:port="${redis.port}"  />  
+        p:host-name="${redis.host}" p:port="${redis.port}"    p:pool-config-ref="jedisPoolConfig"/>  
+        
+     <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">  
+        <property name="connectionFactory"   ref="connectionFactory" />  
+    </bean>    
+          
 </beans>  
+	
