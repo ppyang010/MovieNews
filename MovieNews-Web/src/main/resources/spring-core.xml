@@ -78,8 +78,8 @@
 	<bean name="memcachedClient"
                 class="net.rubyeye.xmemcached.utils.XMemcachedClientFactoryBean" destroy-method="shutdown">
                 <property name="servers">
-                     <value>192.168.177.211:11211</value>
-                     <!--  <value>192.168.101.178:11211</value> -->
+                     <!-- <value>192.168.177.211:11211</value> -->
+                     <value>192.168.101.178:11211</value> 
                 </property>
                 <!-- 权重 -->
                  <property name="weights">
@@ -105,7 +105,9 @@
 	  <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"  
         p:host-name="${redis.host}" p:port="${redis.port}"    p:pool-config-ref="jedisPoolConfig"/>  
         
-       <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        
+        
+     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
         <property name="connectionFactory" ref="jedisConnectionFactory"></property>
         <property name="keySerializer">
             <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
@@ -114,6 +116,21 @@
             <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
         </property>
     </bean>
+    
+    <bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+    	<constructor-arg ref="redisTemplate"/>
+    </bean>
+    
+    <bean id="cacheManager" class="org.springframework.cache.support.CompositeCacheManager">
+    <property name="cacheManagers">
+        <list>
+        	<ref bean="redisCacheManager"/>
+        </list>
+    	</property>
+    	<!-- 都找不到时，不返回null，而是返回NOP的Cache -->
+    	<property name="fallbackToNoOpCache" value="true"/>
+    </bean>
+    
           
 </beans>  
 	
