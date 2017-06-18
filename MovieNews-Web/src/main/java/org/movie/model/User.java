@@ -1,7 +1,12 @@
 package org.movie.model;
 
-public class User {
-    private Integer uid;
+import java.io.Serializable;
+
+public class User implements Serializable{
+	
+	private static final long serialVersionUID = 2189752786132070673L;
+
+	private Integer uid;
 
     private String username;
 

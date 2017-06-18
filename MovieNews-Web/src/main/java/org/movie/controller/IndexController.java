@@ -34,7 +34,7 @@ public class IndexController {
 	INewsService newsService;
 	
 
-	@RequestMapping("/index")
+	@RequestMapping(value={"/index","/"})
 	public String index(Model model,HttpServletRequest request) {
 		PageBean<News> pageBean = newsService.getNewsListByPage(1, 10);
 		model.addAttribute("pageBean", pageBean);

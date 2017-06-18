@@ -12,7 +12,10 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  *
  */
 public class RequestUtil {
-	
+	/**
+	 * 获取当前的request
+	 * @return
+	 */
 	public static HttpServletRequest getRequest(){
 		RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
 		HttpServletRequest request = ((ServletRequestAttributes)requestAttributes).getRequest();

@@ -11,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.movie.cache.UserLoginStatusCache;
+import org.movie.model.UserLoginStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSON;
+
 import net.rubyeye.xmemcached.MemcachedClient;
 import net.rubyeye.xmemcached.exception.MemcachedException;
 
@@ -30,6 +34,9 @@ public class TestController {
 	
 	@Autowired
 	MemcachedClient memcachedClient;
+	 
+	@Autowired
+	UserLoginStatusCache userLoginStatusCache;
 	
 	@RequestMapping(value="/upload",method=RequestMethod.POST)
 	public String upload(HttpServletRequest request,HttpServletResponse response,
@@ -135,6 +142,15 @@ public class TestController {
 		return "demo";
 		
 	}
+	@RequestMapping(value="redistest1")
+	public String redisTest1(HttpServletRequest request,Model model){
+		UserLoginStatus userLoginStatus = userLoginStatusCache.getCache("14");
+		System.out.println(JSON.toJSONString(userLoginStatus));
+		return "demo";
+	}
+	
+	
+	
 }
 class TestBean{
 	String [] checkbox;
